@@ -4,7 +4,7 @@ const Home = () => {
   const apiKey = process.env.OAI_KEY;
   const [message, setMessage] = useState("");
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(event.target.value);
   };
 
@@ -18,8 +18,8 @@ const Home = () => {
     <div>
       <h1>What's on your mind today?</h1>
       <form onSubmit={handleFormSubmit}>
-        <input
-          type="text"
+        <textarea
+          rows={4}
           placeholder="Type thoughts here"
           value={message}
           onChange={handleInputChange}
