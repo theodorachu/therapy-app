@@ -16,7 +16,7 @@ const Home = () => {
 
   return (
     <div>
-      <h1>{"What's on your mind today?"}</h1>
+      <h1>What's on your mind today?</h1>
       <form onSubmit={handleFormSubmit}>
         <input
           type="text"
