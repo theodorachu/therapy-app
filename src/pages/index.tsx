@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const Home = () => {
   const apiKey = process.env.OAI_KEY;
@@ -6,19 +6,19 @@ const Home = () => {
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMessage(event.target.value);
-  }
+  };
 
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log(message);
     setMessage("");
-  }
+  };
 
   return (
     <div>
-      <h1>What's on your mind today?</h1>
+      <h1>{"What's on your mind today?"}</h1>
       <form onSubmit={handleFormSubmit}>
-        <input 
+        <input
           type="text"
           placeholder="Type thoughts here"
           value={message}
