@@ -1,22 +1,46 @@
 import React, { useState } from "react";
 
-const Home = () => {
-  const apiKey = process.env.OAI_KEY;
-  const [message, setMessage] = useState("");
+const Home: React.FC = () => {
+  //const apiKey = process.env.OAI_KEY;
+  const [message, setMessage] = useState<string>("");
+  const [messages, setMessages] = useState<string[]>([
+    "What's on your mind today?",
+  ]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(event.target.value);
   };
 
-  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log(message);
+    setMessages([...messages, message]);
+    try {
+      const unparsedResponse = await fetch("api/send-message", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message }),
+      });
+      if (!unparsedResponse.ok) {
+        const errorResponse = await unparsedResponse.json();
+        throw new Error(errorResponse.error || "api request didn't succeed");
+      }
+      const response = await unparsedResponse.json();
+      console.log(response);
+    } catch (error) {
+      console.error("error: ", error);
+    }
     setMessage("");
   };
 
   return (
     <div>
-      <h1>What's on your mind today?</h1>
+      <h1>Welcome to Melly, your Mental Health Assisant!</h1>
+      <div>
+        {messages.map((msg, index) => (
+          <p key={index}>{msg}</p>
+        ))}
+      </div>
       <form onSubmit={handleFormSubmit}>
         <textarea
           rows={4}
