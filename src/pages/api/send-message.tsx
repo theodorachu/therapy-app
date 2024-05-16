@@ -34,7 +34,7 @@ export default async function handler(
     });
 
     // Send the API response to the client
-    res.status(200).json(completion.choices[0]);
+    res.status(200).json({ data: completion.choices[0].message.content });
   } catch (error) {
     // Handle any errors that occur during the API call
     console.error("Error making API call:", error);

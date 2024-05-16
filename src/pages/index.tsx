@@ -27,6 +27,7 @@ const Home: React.FC = () => {
       }
       const response = await unparsedResponse.json();
       console.log(response);
+      setMessages((currMessages) => [...currMessages, response.data]);
     } catch (error) {
       console.error("error: ", error);
     }
