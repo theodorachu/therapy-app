@@ -21,6 +21,7 @@ export default async function handler(
       return;
     }
     // Make the API call
+    // TODO: actually send the full conversation
     const completion = await openai.chat.completions.create({
       messages: [
         {

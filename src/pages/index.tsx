@@ -13,13 +13,15 @@ const Home: React.FC = () => {
 
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(message);
-    setMessages([...messages, message]);
+    const userMsg = message;
+    setMessage("");
+    console.log(userMsg);
+    setMessages((currMessages) => [...currMessages, userMsg]);
     try {
       const unparsedResponse = await fetch("api/send-message", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message }),
+        body: JSON.stringify({ message: userMsg }), //TODO: need to pass through the entire messages array and then use that to send to openai
       });
       if (!unparsedResponse.ok) {
         const errorResponse = await unparsedResponse.json();
@@ -31,7 +33,6 @@ const Home: React.FC = () => {
     } catch (error) {
       console.error("error: ", error);
     }
-    setMessage("");
   };
 
   return (
