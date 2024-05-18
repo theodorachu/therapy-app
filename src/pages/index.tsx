@@ -21,14 +21,13 @@ const Home: React.FC = () => {
       const unparsedResponse = await fetch("api/send-message", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: userMsg }), //TODO: need to pass through the entire messages array and then use that to send to openai
+        body: JSON.stringify({ message: userMsg }),
       });
       if (!unparsedResponse.ok) {
         const errorResponse = await unparsedResponse.json();
         throw new Error(errorResponse.error || "api request didn't succeed");
       }
       const response = await unparsedResponse.json();
-      console.log(response);
       setMessages((currMessages) => [...currMessages, response.data]);
     } catch (error) {
       console.error("error: ", error);
