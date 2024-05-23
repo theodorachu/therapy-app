@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+// TODO: update UI to be like an imessage convo. assistant reply on left, user reply on right
 const Home: React.FC = () => {
   //const apiKey = process.env.OAI_KEY;
   const [message, setMessage] = useState<string>("");
@@ -15,7 +16,6 @@ const Home: React.FC = () => {
     event.preventDefault();
     const userMsg = message;
     setMessage("");
-    console.log(userMsg);
     setMessages((currMessages) => [...currMessages, userMsg]);
     try {
       const unparsedResponse = await fetch("api/send-message", {
