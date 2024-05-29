@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// TODO buy mellybot.ai
 
 // TODO: update UI to be like an imessage convo. assistant reply on left, user reply on right
 const Home: React.FC = () => {
@@ -36,7 +37,7 @@ const Home: React.FC = () => {
 
   return (
     <div>
-      <h1>Welcome to Melly, your Mental Health Assisant!</h1>
+      <h1>Welcome to Melly, your Mental Health Assistant!</h1>
       <div>
         {messages.map((msg, index) => (
           <p key={index}>{msg}</p>
